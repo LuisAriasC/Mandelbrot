@@ -40,7 +40,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
 
-      if(abs(z) > 2) {
+      if(cuCabs(z) > 2) {
         break;
       }
 
