@@ -1,7 +1,7 @@
 CC = nvcc
 CFLAGS = -std=c++11
 INCLUDES =
-LDFLAGS = -lGL -lglut -lGLU --expt-relaxed-constexpr
+LDFLAGS = -lGL -lglut -lGLU
 SOURCES = main.cu
 OUTF = main.exe
 OBJS = main.o
