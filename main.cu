@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
   }
   int tot = 0;
   for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++) {
-    tot += m_histogram[i]
+    tot += fractalCreator.m_histogram[i];
   }
   printf("maximo %d, max %d\n", max, maxi_c);
 
