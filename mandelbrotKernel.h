@@ -3,7 +3,6 @@
 #include <cmath>
 #include "Mandelbrot.h"
 #include <cuComplex.h>
-//#include <pycuda-complex.hpp>
 //#include <cuda_fp16.h>
 
 using namespace std;
@@ -35,7 +34,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
 
-    cuDoubleComplex z = new cuDoubleComplex(0,0);
+    cuDoubleComplex z;
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
