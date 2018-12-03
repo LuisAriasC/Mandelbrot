@@ -6,7 +6,7 @@
 #include <memory>
 #include <fstream>
 #include "Bitmap.h"
-#include "BitmapInfoHeader.h"
+//#include "BitmapInfoHeader.h"
 #include "BitmapFileHeader.h"
 
 using namespace caveofprogramming;
@@ -24,7 +24,7 @@ private:
 public:
 	Bitmap(int width, int height);
 	void setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue);
-	bool write(string filename);
+	//bool write(string filename);
 	virtual ~Bitmap();
 };
 
@@ -34,6 +34,7 @@ Bitmap::Bitmap(int width, int height) :
 
 }
 
+/*
 bool Bitmap::write(string filename) {
 
 	BitmapFileHeader fileHeader;
@@ -65,6 +66,7 @@ bool Bitmap::write(string filename) {
 
 	return true;
 }
+*/
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
 	uint8_t *pPixel = m_pPixels.get();
