@@ -119,7 +119,7 @@ void FractalCreator::calculateIterationOMP() {
 
 
 void FractalCreator::calculateIterationCUDA() {
-	runCuda(m_fractal, m_histogram, m_zoomList.scale, m_zoomList.m_xCenter, m_zoomList.m_yCenter);
+	runCuda(m_fractal, m_histogram, m_zoomList.m_scale, m_zoomList.m_xCenter, m_zoomList.m_yCenter);
 }
 
 void FractalCreator::calculateRangeTotals(){
