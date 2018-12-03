@@ -1,0 +1,18 @@
+CC = nvcc
+CFLAGS = -std=c++11 -O3 -Xcompiler -ansi -Xcompiler -Ofast -Wno-deprecated-gpu-targets
+INCLUDES =
+LDFLAGS = -lGL -lglut -lGLU
+SOURCES = main.cu
+OUTF = main.exe
+OBJS = main.o
+
+$(OUTF): $(OBJS)
+        $(CC) $(CFLAGS) -o $(OUTF) $< $(LDFLAGS)
+
+$(OBJS): $(SOURCES)
+        $(CC) $(CFLAGS) -c $<
+
+rebuild: clean $(OUTF)
+
+clean:
+        rm *.o $(OUTF)
