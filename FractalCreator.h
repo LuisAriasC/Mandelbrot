@@ -198,7 +198,7 @@ void FractalCreator::drawFractal() {
 				blue = (float)(startColor.b + colorDiff.b * (double)totalPixels/rangeTotal)/255;
 				printf("%f %f %f\n",red/255, green/255, blue/255 );
 			}
-			plot(x,y,red,green,blue);
+			//plot(x,y,red,green,blue);
 		}
 	}
 	cout << "FP" << endl;
