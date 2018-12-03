@@ -71,8 +71,6 @@ void mouseClick(int button, int state, int x, int y){
 
 int main(int argc, char** argv) {
 
-  complex<double> c(0,0);
-  printf("Complex %d\n", c);
 
 	//FractalCreator fractalCreator(M_WIDTH, M_HEIGHT);
 
