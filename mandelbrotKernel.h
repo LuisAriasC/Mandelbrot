@@ -2,7 +2,7 @@
 #include "common.h"
 #include <cmath>
 #include "Mandelbrot.h"
-#include <complex>
+#include <cuComplex.h>
 //#include <cuda_fp16.h>
 
 using namespace std;
@@ -33,8 +33,9 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double xFractal = (x - M_WIDTH / 2) * scale + xCenter;
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
-    complex<double> z = 0;
-    complex<double> c(x, y);
+
+    cuDoubleComplex z = 0;
+    cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = z*z + c;
