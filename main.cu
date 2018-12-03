@@ -95,10 +95,14 @@ int main(int argc, char** argv) {
   printf("Runtime: %f\n", cpuTime);
   //fractalCreator.drawFractal();
 
-
+  int max = 0;
   for (int i = 0; i < M_WIDTH * M_HEIGHT; i++) {
+    if (fractalCreator.m_fractal[i] > max) {
+      max = fractalCreator.m_fractal[i];
+    }
     printf("It : %d\n", fractalCreator.m_fractal[i]);
   }
+  printf("maximo %d\n", max);
 
 
 
