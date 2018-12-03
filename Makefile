@@ -1,7 +1,7 @@
 CC = nvcc
 CFLAGS = -std=c++11
 INCLUDES =
-LDFLAGS = -lGL -lglut -lGLU
+LDFLAGS = -lGL -lglut -lGLU -Wno-deprecated-gpu-targets
 SOURCES = main.cu
 OUTF = main.exe
 OBJS = main.o
