@@ -29,7 +29,7 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
 
   const dim3 block(16, 16);
-  const dim3 grid((int)ceil((float)input.cols / block.x), (int)ceil((float)input.rows/ block.y));
+  const dim3 grid((int)ceil((float)M_WIDTH / block.x), (int)ceil((float)M_HEIGHT/ block.y));
 
   kernel<<<grid, block >>>();
 
