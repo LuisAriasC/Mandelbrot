@@ -84,9 +84,14 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   const dim3 block(16, 16);
   const dim3 grid((int)ceil((float)M_WIDTH / block.x), (int)ceil((float)M_HEIGHT/ block.y));
 
-  printf("Starting\n");
+  printf("Runtime.\n");
+  float cpuTime = 0.0;
+  auto start =  chrono::high_resolution_clock::now();
   kernel<<<grid, block >>>(d_fractal, d_histogram, M_WIDTH, scale, xCenter, yCenter);
-  printf("Ending\n");
+  auto end =  chrono::high_resolution_clock::now();
+  chrono::duration<float, std::milli> duration_ms = end - start;
+  cpuTime = duration_ms.count();
+  printf("Runtime: %f\n", cpuTime);
   SAFE_CALL(cudaDeviceSynchronize(), "Kernel Launch Failed");
   // SAFE_CALL kernel error
   SAFE_CALL(cudaGetLastError(), "Error with last error");

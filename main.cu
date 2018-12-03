@@ -80,15 +80,7 @@ int main(int argc, char** argv) {
 
 	//fractalCreator.addZoom(313, 330, 0.1);
   //fractalCreator.addZoom(825, 130, 0.1);
-
-  printf("Runtime.\n");
-  float cpuTime = 0.0;
-  auto start =  chrono::high_resolution_clock::now();
   fractalCreator.run();
-  auto end =  chrono::high_resolution_clock::now();
-  chrono::duration<float, std::milli> duration_ms = end - start;
-  cpuTime = duration_ms.count();
-  printf("Runtime: %f\n", cpuTime);
   //fractalCreator.drawFractal();
 
 /**/
