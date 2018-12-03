@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 	//fractalCreator.addZoom(313, 330, 0.1);
   //fractalCreator.addZoom(825, 130, 0.1);
   fractalCreator.run();
-  fractalCreator.drawFractal();
+  //fractalCreator.drawFractal();
 
 /**/
   int max = 0;
