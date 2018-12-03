@@ -1,4 +1,5 @@
 #include "lines.h"
+#include "common.h"
 #include "Mandelbrot.h"
 
 using namespace std;
