@@ -1,4 +1,4 @@
-#include <GLUT/glut.h>
+#include <GL/freeglut.h>
 #include <vector>
 #include <iostream>
 #include <stdio.h>
