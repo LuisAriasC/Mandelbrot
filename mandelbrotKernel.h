@@ -10,6 +10,7 @@
 using namespace std;
 using namespace caveofprogramming;
 
+/*
 __host__ __device__ int getIterations_( double x, double y ){
 
   complex<double> z = 0;
@@ -29,6 +30,7 @@ __host__ __device__ int getIterations_( double x, double y ){
 
   return iterations;
 }
+*/
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
 
