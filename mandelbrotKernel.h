@@ -18,7 +18,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   const int tid  = yIndex * step + xIndex;
 
   double xFractal = tid % M_WIDTH;
-  double yFractal = h2floor(tid / M_HEIGHT);
+  double yFractal = floorf(tid / M_HEIGHT);
 
 /*
   for (int y = 0; y < m_height; y++) {
