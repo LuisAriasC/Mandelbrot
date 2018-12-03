@@ -26,7 +26,7 @@ private:
 	//unique_ptr<int[]> m_fractal;
 	//int * m_histogram;
 	//int * m_fractal;
-	Zoom m_zoomList;
+	Zoom m_Zoom;
 	int m_total{0};
 
 	vector<int> m_ranges;
@@ -65,7 +65,7 @@ void FractalCreator::run() {
 }
 
 FractalCreator::FractalCreator(int width, int height) :
-		m_width(width), m_height(height), m_zoomList(
+		m_width(width), m_height(height), m_Zoom(
 				m_width, m_height) {
 
 	int fractalBytes = M_WIDTH * M_HEIGHT * sizeof(int);
@@ -77,7 +77,7 @@ FractalCreator::FractalCreator(int width, int height) :
 	memset(m_fractal, 0, fractalBytes);
 	memset(m_histogram, 0, histogramBytes);
 
-	m_zoomList.add(m_width / 2, m_height / 2, 4.0 / m_width);
+	m_Zoom.add(m_width / 2, m_height / 2, 4.0 / m_width);
 }
 
 FractalCreator::~FractalCreator() {
@@ -88,7 +88,7 @@ FractalCreator::~FractalCreator() {
 void FractalCreator::calculateIteration() {
 	for (int y = 0; y < m_height; y++) {
 		for (int x = 0; x < m_width; x++) {
-			pair<double, double> coords = m_zoomList.doZoom(x, y);
+			pair<double, double> coords = m_Zoom.doZoom(x, y);
 
 			int iterations = Mandelbrot::getIterations(coords.first,
 					coords.second);
@@ -110,7 +110,7 @@ void FractalCreator::calculateIterationOMP() {
 	#pragma omp parallel for private(y) shared(m_fractal,m_histogram)
 	for (y = 0; y < m_height; y++) {
 		for (int x = 0; x < m_width; x++) {
-			pair<double, double> coords = m_zoomList.doZoom(x, y);
+			pair<double, double> coords = m_Zoom.doZoom(x, y);
 
 			int iterations = Mandelbrot::getIterations(coords.first,
 					coords.second);
@@ -129,7 +129,7 @@ void FractalCreator::calculateIterationOMP() {
 
 
 void FractalCreator::calculateIterationCUDA() {
-	runCuda(m_fractal, m_histogram, m_zoomList.m_scale, m_zoomList.m_xCenter, m_zoomList.m_yCenter);
+	runCuda(m_fractal, m_histogram, m_Zoom.m_scale, m_Zoom.m_xCenter, m_Zoom.m_yCenter);
 }
 
 void FractalCreator::calculateRangeTotals(){
@@ -233,7 +233,7 @@ int FractalCreator::getRange(int iterations) const {
 
 
 void FractalCreator::addZoom(int x, int y, double scale) {
-	m_zoomList.add(x,y,scale);
+	m_Zoom.add(x,y,scale);
 }
 
 } /* namespace mandelbrot */
