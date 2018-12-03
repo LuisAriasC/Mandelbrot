@@ -57,13 +57,12 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double xFractal = (x - M_WIDTH / 2) * scale + xCenter;
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
-    printf("X: %d    Y: %d\n", xFractal, yFractal);
-    //double2 a; a.x = a.y = 0.0;
+    //printf("X: %d    Y: %d\n", xFractal, yFractal);
     cuDoubleComplex z;
-    cuDoubleComplex c = make_cuDoubleComplex(x, y);
+    cuDoubleComplex c = make_cuDoubleComplex(xFractal, yFractal);
 
     //printf("Value %d", getIterations_(1,2));
-    //printf("Value %d %d", xIndex, yIndex);
+    printf("Value %d", c);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
