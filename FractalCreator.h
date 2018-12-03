@@ -120,7 +120,7 @@ void FractalCreator::calculateIterationOMP() {
 
 			m_fractal[y * m_width + x] = iterations;
 
-			if (iterations != Mandelbrot::MAX_ITERATIONS) {
+			if (iterations != Mandelbrot::MAX_ITERATIONS + 1) {
 				#pragma omp atomic
 				m_histogram[iterations]++;
 			}
