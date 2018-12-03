@@ -10,7 +10,7 @@
 using namespace std;
 using namespace caveofprogramming;
 
-__host__ __device__ int getIterations( double a, double b ){
+__host__ __device__ int getIterations( double x, double y ){
 
   complex<double> z = 0;
   complex<double> c(x, y);
