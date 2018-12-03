@@ -23,4 +23,7 @@ void runCuda(std::unique_ptr<int [], std::default_delete<int []>>& m_fractal,std
 
   SAFE_CALL(cudaMalloc<int>(&d_fractal, fractalBytes), "CUDA Malloc Failed");
   SAFE_CALL(cudaMalloc<int>(&d_histogram, histogramBytes), "CUDA Malloc Failed");
+
+  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
+
 }
