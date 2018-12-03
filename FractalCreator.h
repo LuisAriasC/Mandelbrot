@@ -25,7 +25,7 @@ private:
 	//unique_ptr<int[]> m_histogram;
 	//unique_ptr<int[]> m_fractal;
 	//int * m_histogram;
-	int * m_fractal;
+	//int * m_fractal;
 	Zoom m_zoomList;
 	int m_total{0};
 
@@ -45,6 +45,8 @@ private:
 
 public:
 	int * m_histogram;
+	int * m_fractal;
+
 	FractalCreator(int width, int height);
 	virtual ~FractalCreator();
 	void addColorRange(double rangeEnd, const RGB& rgb);
