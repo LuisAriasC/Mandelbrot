@@ -16,6 +16,7 @@ public:
 	virtual ~Mandelbrot();
 
 	static int getIterations(double x, double y);
+	int iterations();
 };
 
 Mandelbrot::Mandelbrot() {
@@ -45,6 +46,10 @@ int Mandelbrot::getIterations(double x, double y) {
 	}
 
 	return iterations;
+}
+
+int Mandelbrot::iterations(){
+	return MAX_ITERATIONS;
 }
 
 } /* namespace caveofprogramming */

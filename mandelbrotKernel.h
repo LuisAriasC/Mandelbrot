@@ -1,6 +1,10 @@
 #include "lines.h"
 #include "Mandelbrot.h"
 
+using namespace std;
+using namespace caveofprogramming;
+
+
 __global__ void kernel(){
 
 }
