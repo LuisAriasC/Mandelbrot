@@ -103,10 +103,19 @@ int main(int argc, char** argv) {
     //printf("It : %d\n", fractalCreator.m_fractal[i]);
   }
   int tot = 0;
+  int max_histo = 0;
+  int max_histo_rep = 0;
   for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++) {
+    if (fractalCreator.m_histogram[i] > max_histo) {
+      max_histo = fractalCreator.m_histogram[i];
+      max_histo_rep = 0;
+    } else if (fractalCreator.m_histogram[i] == max){
+      max_histo_rep++;
+    }
     tot += fractalCreator.m_histogram[i];
   }
   printf("maximo %d, max %d\n", max, maxi_c);
+  printf("Total: %d    Mas rep: %d    rep max: %d\n",tot, max_histo, max_histo_rep );
 
 
 
