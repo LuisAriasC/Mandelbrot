@@ -51,7 +51,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   }
 
   if (iterations != Mandelbrot::MAX_ITERATIONS)
-    m_histogram[iterations]++;
+    d_histogram[iterations]++;
   __syncthreads();
 
 }
