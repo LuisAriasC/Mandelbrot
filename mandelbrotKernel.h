@@ -54,13 +54,13 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   SAFE_CALL(cudaMalloc<int>(&d_fractal, fractalBytes), "CUDA Malloc Failed");
 
   SAFE_CALL(cudaMemcpy(d_histogram, m_histogram, histogramBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
-  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, M_WIDTH,fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
+  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal,fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
 
   const dim3 block(16, 16);
   const dim3 grid((int)ceil((float)M_WIDTH / block.x), (int)ceil((float)M_HEIGHT/ block.y));
 
   printf("Starting\n");
-  kernel<<<grid, block >>>(d_fractal, d_histogram, scale, xCenter, yCenter);
+  kernel<<<grid, block >>>(d_fractal, d_histogram, M_WIDTH, scale, xCenter, yCenter);
   printf("Ending\n");
   SAFE_CALL(cudaDeviceSynchronize(), "Kernel Launch Failed");
   // SAFE_CALL kernel error
