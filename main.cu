@@ -112,6 +112,7 @@ int main(int argc, char** argv) {
     } else if (fractalCreator.m_histogram[i] == max){
       max_histo_rep++;
     }
+    printf("%d\n",fractalCreator.m_histogram[i] );
     tot += fractalCreator.m_histogram[i];
   }
   printf("maximo %d %d, max %d\n", max,fractalCreator.m_histogram[max], maxi_c);
