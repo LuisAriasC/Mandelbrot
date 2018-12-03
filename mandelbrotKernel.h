@@ -16,9 +16,10 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   unsigned int yIndex = threadIdx.y + blockIdx.y * blockDim.y;
 
   const int tid  = yIndex * step + xIndex;
+  double div = tid / M_HEIGHT;
 
   double xFractal = tid % M_WIDTH;
-  double yFractal = __device__ floor(tid / M_HEIGHT);
+  double yFractal = floor(div);
 
 /*
   for (int y = 0; y < m_height; y++) {
