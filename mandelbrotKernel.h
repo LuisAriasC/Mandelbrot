@@ -16,16 +16,19 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   unsigned int yIndex = threadIdx.y + blockIdx.y * blockDim.y;
 
   const int tid  = yIndex * step + xIndex;
-  int iterations = 0;
 
   __shared__ int s_histo[Mandelbrot::MAX_ITERATIONS];
 
+  int sx = threadIdx.x + threadIdx.y * blockDim.x;
+
   //Initialize shared histogram to 0
-  if ( tid < Mandelbrot::MAX_ITERATIONS)
-    s_histo[tid] = 0;
+  if ( sx < Mandelbrot::MAX_ITERATIONS)
+    s_histo[sx] = 0;
   __syncthreads();
 
   if ((xIndex < M_WIDTH) && (yIndex < M_HEIGHT)){
+    int iterations = 0;
+
     double div = tid / M_HEIGHT;
 
     int x = tid % M_WIDTH;
@@ -56,8 +59,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   __syncthreads();
 
   // Copy infro from shared memory to global memory
-  if (tid < Mandelbrot::MAX_ITERATIONS)
-    atomicAdd(&d_histogram[tid], s_histo[tid]);
+  if (sx < Mandelbrot::MAX_ITERATIONS)
+    atomicAdd(&d_histogram[sx], s_histo[sx]);
 }
 
 void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, double yCenter){
