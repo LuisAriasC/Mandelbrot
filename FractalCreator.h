@@ -57,14 +57,11 @@ public:
 };
 
 void FractalCreator::run() {
+	//calculateIteration();
 	//calculateIterationOMP();
 	calculateIterationCUDA();
-	printf("Iteraciones Calculadas\n");
 	calculateTotalIterations();
-	printf("Totales it Calculadas\n");
 	calculateRangeTotals();
-	printf("Totales Rango Calculadas\n");
-	//drawFractal();
 }
 
 FractalCreator::FractalCreator(int width, int height) :
