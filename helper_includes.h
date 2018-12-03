@@ -36,8 +36,5 @@
 //#include <helper_functions.h>    // includes cuda.h and cuda_runtime_api.h
 #include <cuda.h>
 #include <cuda_runtime_api.h>
-// CUDA helper functions
-//#include <helper_cuda.h>         // helper functions for CUDA error check
-//#include <helper_cuda_gl.h>      // helper functions for CUDA/GL interop
 
 #endif

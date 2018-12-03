@@ -55,7 +55,7 @@ public:
 
 void FractalCreator::run() {
 	//calculateIterationOMP();
-	calculateIterationCUDA();
+	calculateIterationOMP();
 	printf("Iteraciones Calculadas\n");
 	calculateTotalIterations();
 	printf("Totales it Calculadas\n");
@@ -196,7 +196,7 @@ void FractalCreator::drawFractal() {
 				red = (float)(startColor.r + colorDiff.r * (double)totalPixels/rangeTotal)/255;
 				green = (float)(startColor.g + colorDiff.g * (double)totalPixels/rangeTotal)/255;
 				blue = (float)(startColor.b + colorDiff.b * (double)totalPixels/rangeTotal)/255;
-				//printf("%f %f %f\n",red/255, green/255, blue/255 );
+				printf("%f %f %f\n",red/255, green/255, blue/255 );
 			}
 			plot(x,y,red,green,blue);
 		}
