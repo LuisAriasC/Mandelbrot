@@ -101,8 +101,9 @@ int main(int argc, char** argv) {
     if (fractalCreator.m_fractal[i] > max) {
       max = fractalCreator.m_fractal[i];
       maxi_c = 0;
+    } else if (fractalCreator.m_fractal[i] == max){
+      maxi_c++;
     }
-    maxi_c++;
     printf("It : %d\n", fractalCreator.m_fractal[i]);
   }
   printf("maximo %d, max %d\n", max, maxi_c);
