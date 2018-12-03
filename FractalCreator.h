@@ -55,8 +55,8 @@ public:
 };
 
 void FractalCreator::run() {
-	//calculateIterationOMP();
-	calculateIterationCUDA();
+	calculateIterationOMP();
+	//calculateIterationCUDA();
 	printf("Iteraciones Calculadas\n");
 	calculateTotalIterations();
 	printf("Totales it Calculadas\n");
