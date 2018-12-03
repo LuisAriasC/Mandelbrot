@@ -93,6 +93,8 @@ int main(int argc, char** argv) {
   chrono::duration<float, std::milli> duration_ms = end - start;
   cpuTime = duration_ms.count();
   printf("Runtime: %f\n", cpuTime);
+  fractalCreator.drawFractal();
+
 
 
 	glutInit(&argc, argv);
