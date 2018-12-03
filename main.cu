@@ -95,11 +95,11 @@ int main(int argc, char** argv) {
   printf("Runtime: %f\n", cpuTime);
   //fractalCreator.drawFractal();
 
-  for (int i = 0; i < M_WIDTH; i++) {
-    for (int j = 0; j < M_HEIGHT; j++) {
-      printf("It : %d\n", fractalCreator.m_histogram[j * M_WIDTH + i]);
-    }
+
+  for (int i = 0; i < M_WIDTH * M_HEIGHT; i++) {
+    printf("It : %d\n", fractalCreator.m_histogram[i]);
   }
+
 
 
 
