@@ -7,7 +7,7 @@
 #include <chrono>
 
 using namespace std;
-using namespace caveofprogramming;
+using namespace mandelbrot;
 
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){

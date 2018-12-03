@@ -16,7 +16,7 @@
 
 using namespace std;
 
-namespace caveofprogramming {
+namespace mandelbrot {
 
 class FractalCreator {
 private:
@@ -236,6 +236,6 @@ void FractalCreator::addZoom(int x, int y, double scale) {
 	m_zoomList.add(x,y,scale);
 }
 
-} /* namespace caveofprogramming */
+} /* namespace mandelbrot */
 
 #endif /* FRACTALCREATOR_H_ */

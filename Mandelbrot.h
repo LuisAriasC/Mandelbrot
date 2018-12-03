@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace caveofprogramming {
+namespace mandelbrot {
 
 class Mandelbrot {
 public:
@@ -52,6 +52,6 @@ int Mandelbrot::iterations(){
 	return MAX_ITERATIONS;
 }
 
-} /* namespace caveofprogramming */
+} /* namespace mandelbrot */
 
 #endif /* MANDELBROT_H_ */

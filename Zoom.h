@@ -1,12 +1,11 @@
 #ifndef ZOOM_H_
 #define ZOOM_H_
 
-#include <vector>
 #include <utility>
 
 using namespace std;
 
-namespace caveofprogramming {
+namespace mandelbrot {
 
 class Zoom {
 private:
@@ -39,6 +38,6 @@ pair<double, double> Zoom::doZoom(int x, int y) {
 	return pair<double, double>(xFractal, yFractal);
 }
 
-} /* namespace caveofprogramming */
+} /* namespace mandelbrot */
 
 #endif /* ZOOM_H_ */

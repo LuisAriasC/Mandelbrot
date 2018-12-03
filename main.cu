@@ -3,7 +3,7 @@
 #include <math.h>
 #include <complex>
 
-using namespace caveofprogramming;
+using namespace mandelbrot;
 
 FractalCreator fractalCreator(M_WIDTH, M_HEIGHT);
 

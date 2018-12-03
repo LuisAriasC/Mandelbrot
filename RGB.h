@@ -1,7 +1,7 @@
 #ifndef RGB_H_
 #define RGB_H_
 
-namespace caveofprogramming{
+namespace mandelbrot{
 
 struct RGB{
   double r;
