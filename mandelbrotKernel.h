@@ -7,7 +7,7 @@ using namespace caveofprogramming;
 
 
 __global__ void kernel(){
-
+  printf("HI FROM KERNEL\n");
 }
 
 void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, double yCenter){
@@ -26,6 +26,21 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   SAFE_CALL(cudaMalloc<int>(&d_fractal, fractalBytes), "CUDA Malloc Failed");
 
   SAFE_CALL(cudaMemcpy(d_histogram, m_histogram, histogramBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
+  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
 
+  const dim3 block(16, 16);
+  const dim3 grid((int)ceil((float)input.cols / block.x), (int)ceil((float)input.rows/ block.y));
+
+  kernel<<<grid, block >>>();
+
+  SAFE_CALL(cudaDeviceSynchronize(), "Kernel Launch Failed");
+  // SAFE_CALL kernel error
+  SAFE_CALL(cudaGetLastError(), "Error with last error");
+
+  SAFE_CALL(cudaFree(d_fractal), "CUDA Free Failed");
+  SAFE_CALL(cudaFree(d_histogram), "CUDA Free Failed");
+
+  // Reset device
+  SAFE_CALL(cudaDeviceReset(), "Error reseting");
 
 }
