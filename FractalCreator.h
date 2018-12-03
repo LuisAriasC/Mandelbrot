@@ -187,7 +187,7 @@ void FractalCreator::drawFractal() {
 
 			if (iterations != Mandelbrot::MAX_ITERATIONS) {
 
-				double hue = 0.0;
+				//double hue = 0.0;
 				int totalPixels = 0;
 
 				for (int i = rangeStart; i <= iterations; i++)
