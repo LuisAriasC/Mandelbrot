@@ -97,7 +97,7 @@ int main(int argc, char** argv) {
 
   for (int i = 0; i < M_WIDTH; i++) {
     for (int j = 0; j < M_HEIGHT; j++) {
-      printf(" I%d\n", fractalCreator.m_histogram[j * M_WIDTH + i]);
+      printf("It : %d\n", fractalCreator.m_histogram[j * M_WIDTH + i]);
     }
   }
 
