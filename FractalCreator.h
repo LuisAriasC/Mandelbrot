@@ -1,10 +1,6 @@
 #ifndef FRACTALCREATOR_H_
 #define FRACTALCREATOR_H_
 
-#include <string>
-#include <cstdint>
-#include <memory>
-#include <fstream>
 #include <math.h>
 #include <vector>
 #include <iostream>
