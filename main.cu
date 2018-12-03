@@ -34,10 +34,6 @@ void escena(int w, int h){
     glLoadIdentity();
 }
 
-int x_cent = M_WIDTH / 2;
-int y_cent = M_HEIGHT / 2;
-
-
 void keyboard_mandelbrot(unsigned char key, int x_, int y_){
     switch (key) {
         case 'q':
