@@ -4,33 +4,10 @@
 #include "Mandelbrot.h"
 #include <cuComplex.h>
 #include <complex>
-//#include <cuPrintf.cu>
-//#include <cuda_fp16.h>
 
 using namespace std;
 using namespace caveofprogramming;
 
-/*
-__host__ __device__ int getIterations_( double x, double y ){
-
-  complex<double> z = 0;
-  complex<double> c(x, y);
-
-  int iterations = 0;
-
-  while(iterations < Mandelbrot::MAX_ITERATIONS) {
-    z = z*z + c;
-
-    if(abs(z) > 2) {
-      break;
-    }
-
-    iterations++;
-  }
-
-  return iterations;
-}
-*/
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
 
@@ -59,9 +36,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
 
     double2 a; a.x = 0.0, a.y = 0.0;
     cuDoubleComplex z = a;
-    cuDoubleComplex c = make_cuDoubleComplex(x, y);
+    cuDoubleComplex c = make_cuDoubleComplex(xFractal, yFractal);
 
-    //printf("Value %d", z);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
@@ -73,9 +49,6 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
       iterations++;
     }
 
-    //printf("Iterations %d", iterations);
-
-    //printf("Value %d", iterations);
     d_fractal[tid] = iterations;
   }
 

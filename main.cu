@@ -93,7 +93,13 @@ int main(int argc, char** argv) {
   chrono::duration<float, std::milli> duration_ms = end - start;
   cpuTime = duration_ms.count();
   printf("Runtime: %f\n", cpuTime);
-  fractalCreator.drawFractal();
+  //fractalCreator.drawFractal();
+
+  for (int i = 0; i < M_WIDTH; i++) {
+    for (int j = 0; j < M_HEIGHT; j++) {
+      printf(" I%d\n", fractalCreator.m_histogram[j * M_WIDTH + i]);
+    }
+  }
 
 
 
