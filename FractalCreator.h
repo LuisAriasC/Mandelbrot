@@ -9,7 +9,7 @@
 #include <iostream>
 #include <assert.h>
 #include <omp.h>
-//#include "Bitmap.h"
+#include "Bitmap.h"
 #include "Mandelbrot.h"
 #include "Zoom.h"
 #include "RGB.h"
