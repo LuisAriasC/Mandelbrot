@@ -1,14 +1,41 @@
 #include "lines.h"
 #include "common.h"
+#include <cmath>
 #include "Mandelbrot.h"
 
 using namespace std;
 using namespace caveofprogramming;
 
 
-__global__ void kernel(int * d_fractal, int * d_histogram, double scale, double xCenter, double yCenter){
+__global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
   //printf("HI FROM KERNEL\n");
   int i = 0;
+
+  unsigned int xIndex = threadIdx.x + blockIdx.x * blockDim.x;
+  unsigned int yIndex = threadIdx.y + blockIdx.y * blockDim.y;
+
+  const int tid  = yIndex * step + xIndex;
+
+  double xFractal = tid % M_WIDTH;
+  double yFractal = floor(tid / M_HEIGHT);
+
+/*
+  for (int y = 0; y < m_height; y++) {
+    for (int x = 0; x < m_width; x++) {
+      pair<double, double> coords = m_zoomList.doZoom(x, y);
+
+      int iterations = Mandelbrot::getIterations(coords.first,
+          coords.second);
+
+      m_fractal[y * m_width + x] = iterations;
+
+      if (iterations != Mandelbrot::MAX_ITERATIONS) {
+        m_histogram[iterations]++;
+      }
+
+    }
+  }
+*/
 }
 
 void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, double yCenter){
@@ -27,7 +54,7 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   SAFE_CALL(cudaMalloc<int>(&d_fractal, fractalBytes), "CUDA Malloc Failed");
 
   SAFE_CALL(cudaMemcpy(d_histogram, m_histogram, histogramBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
-  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
+  SAFE_CALL(cudaMemcpy(d_fractal, m_fractal, M_WIDTH,fractalBytes, cudaMemcpyHostToDevice), "CUDA Memcpy Host To Device Failed");
 
   const dim3 block(16, 16);
   const dim3 grid((int)ceil((float)M_WIDTH / block.x), (int)ceil((float)M_HEIGHT/ block.y));
