@@ -48,15 +48,8 @@ void mouseClick(int button, int state, int x, int y){
 
   if (button == GLUT_LEFT_BUTTON) {
     if (state == GLUT_DOWN) {
-      cout << "y:" << y << endl;
       fractalCreator.addZoom(x, M_HEIGHT - y, 0.1);
-      float cpuTime = 0.0;
-      auto start =  chrono::high_resolution_clock::now();
       fractalCreator.run();
-      auto end =  chrono::high_resolution_clock::now();
-      chrono::duration<float, std::milli> duration_ms = end - start;
-      cpuTime = duration_ms.count();
-      printf("Runtime: %f\n", cpuTime);
       glutPostRedisplay();
     }
   }

@@ -25,7 +25,6 @@ Zoom::Zoom(int width, int height) :
 		m_width(width), m_height(height) {
 }
 
-//void ZoomList::add(const Zoom& zoom) {
 void Zoom::add(int x, int y, double scale) {
 	m_xCenter += (x - m_width / 2) * m_scale;
 	m_yCenter += -(y - m_height / 2) * m_scale;
