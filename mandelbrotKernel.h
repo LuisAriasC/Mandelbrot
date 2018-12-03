@@ -10,14 +10,14 @@
 using namespace std;
 using namespace caveofprogramming;
 
-__host__ __device__ int getIterations( double x, double y ){
+__host__ __device__ int getIterations_( double x, double y ){
 
   complex<double> z = 0;
   complex<double> c(x, y);
 
   int iterations = 0;
 
-  while(iterations < MAX_ITERATIONS) {
+  while(iterations < Mandelbrot::MAX_ITERATIONS) {
     z = z*z + c;
 
     if(abs(z) > 2) {
@@ -59,7 +59,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     cuDoubleComplex z;
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
-    printf("Value %d", add(1,2));
+    printf("Value %d", getIterations_(1,2));
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
