@@ -74,6 +74,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
       iterations++;
     }
 
+    printf("Value 2__ %d", z);
+
     //printf("Value %d", iterations);
     d_fractal[tid] = iterations;
   }
