@@ -51,7 +51,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   if ((xIndex < M_WIDTH) && (yIndex < M_HEIGHT)){
     double div = tid / M_HEIGHT;
 
-    double x = tid % M_WIDTH;
+    int x = tid % M_WIDTH;
     printf("X: %d\n", x);
     double y = floor(div);
 
