@@ -6,7 +6,7 @@ using namespace std;
 using namespace caveofprogramming;
 
 
-__global__ void kernel(){
+__global__ void kernel(int * d_fractal, int * d_histogram, double scale, double xCenter, double yCenter){
   //printf("HI FROM KERNEL\n");
   int i = 0;
 }
@@ -33,7 +33,7 @@ void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, do
   const dim3 grid((int)ceil((float)M_WIDTH / block.x), (int)ceil((float)M_HEIGHT/ block.y));
 
   printf("Starting\n");
-  kernel<<<grid, block >>>();
+  kernel<<<grid, block >>>(d_fractal, d_histogram, scale, xCenter, yCenter);
   printf("Ending\n");
   SAFE_CALL(cudaDeviceSynchronize(), "Kernel Launch Failed");
   // SAFE_CALL kernel error
