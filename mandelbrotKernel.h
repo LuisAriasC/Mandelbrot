@@ -41,7 +41,6 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   const int tid  = yIndex * step + xIndex;
   int iterations = 0;
 
-
   __shared__ int s_histo[Mandelbrot::MAX_ITERATIONS];
 
   //Initialize shared histogram to 0
@@ -49,11 +48,11 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     s_histo[tid] = 0;
   __syncthreads();
 
-  if ((xIndex < 200) && (yIndex < M_HEIGHT)){
-    printf("Value %d %d", xIndex, yIndex);
+  if ((xIndex < M_WIDTH) && (yIndex < M_HEIGHT)){
     double div = tid / M_HEIGHT;
 
     double x = tid % M_WIDTH;
+    printf("X: %d\n", x);
     double y = floor(div);
 
     double xFractal = (x - M_WIDTH / 2) * scale + xCenter;
