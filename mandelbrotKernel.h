@@ -2,6 +2,7 @@
 #include "common.h"
 #include <cmath>
 #include "Mandelbrot.h"
+#include <complex>
 //#include <cuda_fp16.h>
 
 using namespace std;
@@ -9,35 +10,49 @@ using namespace caveofprogramming;
 
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
-  //printf("HI FROM KERNEL\n");
-  int i = 0;
+
 
   unsigned int xIndex = threadIdx.x + blockIdx.x * blockDim.x;
   unsigned int yIndex = threadIdx.y + blockIdx.y * blockDim.y;
-
   const int tid  = yIndex * step + xIndex;
-  double div = tid / M_HEIGHT;
+  int iterations = 0;
 
-  double xFractal = tid % M_WIDTH;
-  double yFractal = floor(div);
+  __shared__ int s_histo[Mandelbrot::MAX_ITERATIONS];
 
-/*
-  for (int y = 0; y < m_height; y++) {
-    for (int x = 0; x < m_width; x++) {
-      pair<double, double> coords = m_zoomList.doZoom(x, y);
+  //Initialize shared histogram to 0
+  if ( tid < Mandelbrot::MAX_ITERATIONS)
+    s_histo[tid] = 0;
+  __syncthreads();
 
-      int iterations = Mandelbrot::getIterations(coords.first,
-          coords.second);
+  if ((xIndex < M_WIDTH) && (yIndex < M_HEIGHT)){
+    double div = tid / M_HEIGHT;
 
-      m_fractal[y * m_width + x] = iterations;
+    double x = tid % M_WIDTH;
+    double y = floor(div);
 
-      if (iterations != Mandelbrot::MAX_ITERATIONS) {
-        m_histogram[iterations]++;
+    double xFractal = (x - M_WIDTH / 2) * scale + xCenter;
+    double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
+
+    complex<double> z = 0;
+    complex<double> c(x, y);
+
+    while(iterations < Mandelbrot::MAX_ITERATIONS) {
+      z = z*z + c;
+
+      if(abs(z) > 2) {
+        break;
       }
 
+      iterations++;
     }
+
+    d_fractal[tid] = iterations;
   }
-*/
+
+  if (iterations != Mandelbrot::MAX_ITERATIONS)
+    m_histogram[iterations]++;
+  __syncthreads();
+
 }
 
 void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, double yCenter){
