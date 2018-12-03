@@ -58,7 +58,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
     double2 a; a.x = 0.0, a.y = 0.0;
-    cuDoubleComplex z;
+    cuDoubleComplex z = a;
     cuDoubleComplex c = make_cuDoubleComplex(xFractal, yFractal);
 
     //printf("Value %d", getIterations_(1,2));
