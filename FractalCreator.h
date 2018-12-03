@@ -10,7 +10,6 @@
 #include <iostream>
 #include <assert.h>
 #include <omp.h>
-#include "Mandelbrot.h"
 #include "Zoom.h"
 #include "RGB.h"
 #include "mandelbrotKernel.h"
