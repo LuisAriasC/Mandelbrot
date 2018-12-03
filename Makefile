@@ -1,5 +1,5 @@
 CC = nvcc
-CFLAGS = -std=c++11 -O3 -Xcompiler -ansi -Xcompiler -Ofast -Wno-deprecated-gpu-targets
+CFLAGS = -std=c++11
 INCLUDES =
 LDFLAGS = -lGL -lglut -lGLU
 SOURCES = main.cu
