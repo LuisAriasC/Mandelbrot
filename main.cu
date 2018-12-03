@@ -1,6 +1,5 @@
 #include <iostream>
 #include "FractalCreator.h"
-#include <chrono>
 #include <math.h>
 #include <complex>
 

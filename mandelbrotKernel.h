@@ -4,6 +4,7 @@
 #include "Mandelbrot.h"
 #include <cuComplex.h>
 #include <complex>
+#include <chrono>
 
 using namespace std;
 using namespace caveofprogramming;
