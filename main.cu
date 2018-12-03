@@ -3,11 +3,12 @@
 #include <chrono>
 #include <math.h>
 
+using namespace caveofprogramming;
+
 FractalCreator fractalCreator(M_WIDTH, M_HEIGHT);
 
 
 using namespace std;
-using namespace caveofprogramming;
 
 void inicializar(void){
     glClearColor (0.0, 0.0, 0.0, 0.0);
