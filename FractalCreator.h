@@ -23,7 +23,8 @@ private:
 	int m_width;
 	int m_height;
 	unique_ptr<int[]> m_histogram;
-	unique_ptr<int[]> m_fractal;
+	//unique_ptr<int[]> m_fractal;
+	int * m_fractal;
 	Zoom m_zoomList;
 	int m_total{0};
 
@@ -64,14 +65,18 @@ void FractalCreator::run() {
 
 FractalCreator::FractalCreator(int width, int height) :
 		m_width(width), m_height(height), m_histogram(
-				new int[Mandelbrot::MAX_ITERATIONS] { 0 }), m_fractal(
-				new int[m_width * m_height] { 0 }), m_zoomList(
+				new int[Mandelbrot::MAX_ITERATIONS] { 0 }), m_zoomList(
 				m_width, m_height) {
 
+	int fractalBytes = M_WIDTH * M_HEIGHT * sizeof(int);
+	m_fractal = (int *)malloc(fractalBytes);
+	memset(m_fractal, 0, fractalBytes);
+	
 	m_zoomList.add(m_width / 2, m_height / 2, 4.0 / m_width);
 }
 
 FractalCreator::~FractalCreator() {
+	free(m_fractal);
 }
 
 void FractalCreator::calculateIteration() {
