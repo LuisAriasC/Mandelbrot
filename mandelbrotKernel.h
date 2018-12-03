@@ -3,14 +3,31 @@
 #include <cmath>
 #include "Mandelbrot.h"
 #include <cuComplex.h>
+#include <complex>
 //#include <cuPrintf.cu>
 //#include <cuda_fp16.h>
 
 using namespace std;
 using namespace caveofprogramming;
 
-__host__ __device__ int add( int a, int b ){
-    return a + b;
+__host__ __device__ int getIterations( double a, double b ){
+
+  complex<double> z = 0;
+  complex<double> c(x, y);
+
+  int iterations = 0;
+
+  while(iterations < MAX_ITERATIONS) {
+    z = z*z + c;
+
+    if(abs(z) > 2) {
+      break;
+    }
+
+    iterations++;
+  }
+
+  return iterations;
 }
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
@@ -38,8 +55,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
 
-    double2 a; a.x = a.y = 0.0;
-    cuDoubleComplex z = a;
+    //double2 a; a.x = a.y = 0.0;
+    cuDoubleComplex z;
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
     printf("Value %d", add(1,2));
