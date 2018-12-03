@@ -39,6 +39,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     cuDoubleComplex z = a;
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
+    printf("Value %d", c);
+
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
 
@@ -49,7 +51,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
       iterations++;
     }
 
-    printf("Value %d", iterations);
+    //printf("Value %d", iterations);
     d_fractal[tid] = iterations;
   }
 
