@@ -41,6 +41,8 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
   const int tid  = yIndex * step + xIndex;
   int iterations = 0;
 
+  printf("Value %d %d", xIndex, yIndex);
+
   __shared__ int s_histo[Mandelbrot::MAX_ITERATIONS];
 
   //Initialize shared histogram to 0
@@ -63,7 +65,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
     //printf("Value %d", getIterations_(1,2));
-    printf("Value %d %d", xIndex, yIndex);
+    //printf("Value %d %d", xIndex, yIndex);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
