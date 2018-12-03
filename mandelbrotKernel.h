@@ -3,7 +3,7 @@
 #include <cmath>
 #include "Mandelbrot.h"
 #include <cuComplex.h>
-#include <pycuda-complex.hpp>
+//#include <pycuda-complex.hpp>
 //#include <cuda_fp16.h>
 
 using namespace std;
