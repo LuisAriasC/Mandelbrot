@@ -16,7 +16,7 @@ void inicializar(void){
 }
 
 
-void display_poligon(){
+void display_mandelbrot(){
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 1.0, 1.0);
     glPointSize(1.0);
@@ -24,7 +24,7 @@ void display_poligon(){
     glutSwapBuffers();
 }
 
-void escena(int w, int h){
+void scene(int w, int h){
     glViewport (0, 0, (GLsizei) M_WIDTH, (GLsizei) M_HEIGHT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -80,7 +80,6 @@ int main(int argc, char** argv) {
 	//fractalCreator.addZoom(313, 330, 0.1);
   //fractalCreator.addZoom(825, 130, 0.1);
   fractalCreator.run();
-  //fractalCreator.drawFractal();
 
 /**/
   int max = 0;
@@ -116,17 +115,15 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(M_WIDTH, M_HEIGHT);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Mi ventana de OpenGL");
+	glutCreateWindow("MANDELBROT SET");
 	inicializar();
 
 	glutKeyboardFunc(keyboard_mandelbrot);
   glutMouseFunc(mouseClick);
-	glutDisplayFunc(display_poligon);
-	glutReshapeFunc(escena);
+	glutDisplayFunc(display_mandelbrot);
+	glutReshapeFunc(scene);
 	glutMainLoop();
 
-	//fractalCreator.run("test.bmp");
-
-	cout << "Finished." << endl;
+	printf("Finished.\n");
 	return 0;
 }
