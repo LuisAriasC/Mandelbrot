@@ -9,6 +9,9 @@
 using namespace std;
 using namespace caveofprogramming;
 
+__host__ __device__ int add( int a, int b ){
+    return a + b;
+}
 
 __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale, double xCenter, double yCenter){
 
@@ -39,7 +42,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     cuDoubleComplex z = a;
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
-    printf("Value %d", z);
+    printf("Value %d", add(1,2));
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
       z = cuCadd(cuCmul(z, z), c);
