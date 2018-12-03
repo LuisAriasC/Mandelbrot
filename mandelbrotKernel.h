@@ -54,7 +54,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     }
 
     d_fractal[tid] = iterations;
-    atomicAdd(&d_histo[iterations], 1);
+    atomicAdd(&d_histogram[iterations], 1);
       //d_histogram[iterations]++;
   }
   __syncthreads();
