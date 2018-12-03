@@ -50,17 +50,14 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     }
 
     d_fractal[tid] = iterations;
-
-    if (iterations != Mandelbrot::MAX_ITERATIONS)
-      atomicAdd(&s_histo[iterations], 1);
+    atomicAdd(&s_histo[iterations], 1);
       //d_histogram[iterations]++;
-    __syncthreads();
   }
+  __syncthreads();
 
   // Copy infro from shared memory to global memory
   if (tid < Mandelbrot::MAX_ITERATIONS)
     atomicAdd(&d_histogram[tid], s_histo[tid]);
-  __syncthreads();
 }
 
 void runCuda(int * m_fractal,int * m_histogram, double scale, double xCenter, double yCenter){
