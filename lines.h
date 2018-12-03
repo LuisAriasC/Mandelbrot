@@ -1,4 +1,4 @@
-#include <GL/freeglut.h>
+#include "helper_includes.h"
 #include <vector>
 #include <iostream>
 #include <stdio.h>
