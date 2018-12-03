@@ -105,10 +105,10 @@ int main(int argc, char** argv) {
   int tot = 0;
   int max_histo = 0;
   int max_histo_rep = 0;
-  for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++) {
+  for (int i = 0; i < Mandelbrot::MAX_ITERATIONS + 1; i++) {
     if (fractalCreator.m_histogram[i] > max_histo) {
       max_histo = fractalCreator.m_histogram[i];
-      max_histo_rep = 0;
+      max_histo_rep = 1;
     } else if (fractalCreator.m_histogram[i] == max){
       max_histo_rep++;
     }
