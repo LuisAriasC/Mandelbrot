@@ -5,11 +5,11 @@
 #include <cstdint>
 #include <memory>
 #include <fstream>
-#include "Bitmap.h"
+//#include "Bitmap.h"
 //#include "BitmapInfoHeader.h"
 //#include "BitmapFileHeader.h"
 
-using namespace caveofprogramming;
+//using namespace caveofprogramming;
 using namespace std;
 
 namespace caveofprogramming {
