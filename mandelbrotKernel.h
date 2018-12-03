@@ -34,7 +34,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
     double yFractal = (y - M_HEIGHT / 2) * scale + yCenter;
 
 
-    cuDoubleComplex z = new cuDoubleComplex(0);
+    cuDoubleComplex z = make_cuDoubleComplex(0, 0);
     cuDoubleComplex c = make_cuDoubleComplex(x, y);
 
     while(iterations < Mandelbrot::MAX_ITERATIONS) {
