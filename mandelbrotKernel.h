@@ -3,7 +3,7 @@
 #include <cmath>
 #include "Mandelbrot.h"
 #include <cuComplex.h>
-#include <cuPrintf.cu>
+//#include <cuPrintf.cu>
 //#include <cuda_fp16.h>
 
 using namespace std;
@@ -49,7 +49,7 @@ __global__ void kernel(int * d_fractal, int * d_histogram, int step,double scale
       iterations++;
     }
 
-    cuPrintf("Value %d", iterations);
+    printf("Value %d", iterations);
     d_fractal[tid] = iterations;
   }
 
